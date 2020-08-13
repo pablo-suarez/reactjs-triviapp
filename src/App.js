@@ -11,6 +11,7 @@ function App() {
     const [score, setScore] = useState(0);
     const [gameState, setGameState] = useState(1);
     const [total, addTotal] = useState([]);
+    
     useEffect(()=>{
         fetch(API)
             .then((res)=>res.json())
@@ -19,11 +20,12 @@ function App() {
                 //setCurrQuest(data.results[0])
             });
     },[]);
+
     const findata = []
     const mytotal = {}
     const myArray = [];
     const handleAnswer = (answer) => {
-        
+        //console.log(quest);
        const newCurr = currQuest + 1
        //const newTotal = quest[currQuest].question;
         //alert(newTotal);
@@ -50,14 +52,29 @@ function App() {
             //console.log(myArray);
         }
     };
-    return gameState === 2 ? (
+    const restartGame = (opt) =>{
+        if(opt===0){
+            setGameState(0);
+        }
+        if(opt===1){
+            setGameState(1);
+            addTotal([]);
+            setCurrQuest(0);
+            setScore(0);
+        }
+    };
+    return gameState === 1 ? (
+        <div className="container">
+            <button onClick={() => restartGame(0)}>Begin</button>
+        </div>
+    ) : ( gameState === 2 ? (
     <div className="container">
         <div className="container">Your score was {score}</div>
         {
             total.map((dynamicData,i)=>
             <div key={dynamicData.id}>
                 <ul>
-            <li >{dynamicData.question}</li>
+            <li dangerouslySetInnerHTML={{ __html: dynamicData.question}}></li>
 
             </ul>
             </div>
@@ -65,7 +82,7 @@ function App() {
             )
         }
         <div>
-            <button></button>
+        <button onClick={()=>restartGame(1)}>Restart</button>
         </div>
     </div>
     
@@ -78,7 +95,7 @@ function App() {
     </div>
     ) : (
         <h1>Cargando pregunta</h1>
-    );
+    ));
     
 
 }
