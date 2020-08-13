@@ -27,14 +27,14 @@ function App() {
        const newCurr = currQuest + 1
        //const newTotal = quest[currQuest].question;
         //alert(newTotal);
-        /*
-        findata.push({ 
+        
+        total.push({ 
             "question"    : quest[currQuest].question,
             "correct_ans"  : quest[currQuest].correct_answer,
             "my_ans"    : answer 
-        });*/
-        const newArray = [currQuest,quest[currQuest].question,quest[currQuest].correct_answer,answer];
-        total.push(newArray);
+        });
+        //const newArray = [currQuest,quest[currQuest].question,quest[currQuest].correct_answer,answer];
+        //total.push(newArray);
         addTotal(total);
         console.log(total);
 
