@@ -28,7 +28,8 @@ function App() {
        //const newTotal = quest[currQuest].question;
         //alert(newTotal);
         
-        total.push({ 
+        total.push({
+            "id" : currQuest,
             "question"    : quest[currQuest].question,
             "correct_ans"  : quest[currQuest].correct_answer,
             "my_ans"    : answer 
@@ -46,11 +47,28 @@ function App() {
             setGameState(2);
             /*mytotal.findata = findata;
             console.log(JSON.stringify(mytotal));*/
-            console.log(myArray);
+            //console.log(myArray);
         }
     };
     return gameState === 2 ? (
-    <div className="container">Your score was {score}</div>
+    <div className="container">
+        <div className="container">Your score was {score}</div>
+        {
+            total.map((dynamicData,i)=>
+            <div key={dynamicData.id}>
+                <ul>
+            <li >{dynamicData.question}</li>
+
+            </ul>
+            </div>
+            
+            )
+        }
+        <div>
+            <button></button>
+        </div>
+    </div>
+    
     ) : quest.length > 0 ? (
     <div className="container">
         
