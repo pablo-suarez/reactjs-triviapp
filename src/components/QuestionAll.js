@@ -1,28 +1,35 @@
 import React from 'react';
 
 import './styles.css'
-/*
-const Button = ({ answer, className }) => (
-<button className={`${className}`} onClick={() => {handleAnswer(answer)}}>{answer}</button>
-);*/
 
+/**
+ * Here every question is loaded and here are the buttons to chose the answer
+ */
 
 const QuestionAll = ({
     handleAnswer,
-    data : {question, correct_answer,incorrect_answers}, }) => {
-        //const PossAnswer = [correct_answer, ...incorrect_answers].sort(()=> Math.random() - 0.5);
+    data : {question, correct_answer,incorrect_answers,category}, }) => {
         return(
-    <div>
-        <div>
-            <h3 dangerouslySetInnerHTML={{ __html: question}}/>
-        </div>
-        <div>
-            <button className={`${correct_answer === "True" ? 'correctAns' : '' }`} onClick={() => {handleAnswer("True")}} answer="True">True</button>
-            <button className={`${correct_answer === "False" ? 'correctAns' : '' }`} onClick={() => {handleAnswer("False")}} answer="False">False</button>
-
-            <button className='correctAns' answer="Hello"></button>
-        </div>
-    </div>
-);};
+            <div>
+                <div className="card">
+                    <div>
+                        <h1 className="headtext">{category}</h1>
+                    </div>
+                    <br/>
+                    <div className="footcard">
+                        <h3 className="bodytext" dangerouslySetInnerHTML={{ __html: question}}/>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div>
+                    <button className='btn btnT panbut' onClick={() => {handleAnswer("True")}} answer="True">True <i class="fa fa-check-circle"></i></button>
+                    <button className='btn btnF panbut' onClick={() => {handleAnswer("False")}} answer="False">False <i class="fa fa-times-circle"></i></button> 
+                </div>
+            </div>
+    );
+};
 
 export default QuestionAll;
+
